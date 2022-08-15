@@ -1,0 +1,15 @@
+<mat-card
+  *ngIf="movie"
+  class="movie-card"
+  [routerLink]="['movie-detail', movie.key]"
+>
+  <mat-card-title-group>
+    <mat-card-title>{{movie.name}}</mat-card-title>
+    <mat-card-subtitle>
+          <span *ngFor="let genre of movie.genres; let last = last">
+            {{genre}}{{last ? '' : ','}}
+          </span>
+    </mat-card-subtitle>
+    <img mat-card-sm-image src="/assets/images/movie-covers/{{movie.img}}">
+  </mat-card-title-group>
+</mat-card>

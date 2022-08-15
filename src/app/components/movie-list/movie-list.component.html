@@ -1,0 +1,23 @@
+<div class="search-wrapper">
+  <app-movie-search></app-movie-search>
+  <app-genre-filter></app-genre-filter>
+</div>
+<div
+  class="movies-container"
+  *ngIf="moviesFiltered$ | async as moviesFiltered; else allMoviesList"
+>
+  <app-movie-card *ngFor="let movie of moviesFiltered"
+                  [movie]="movie"
+  ></app-movie-card>
+</div>
+<ng-template #allMoviesList>
+  <div
+    class="movies-container"
+    *ngIf="movies$ | async as movies"
+  >
+    <app-movie-card *ngFor="let movie of movies"
+                    [movie]="movie"
+    ></app-movie-card>
+  </div>
+</ng-template>
+

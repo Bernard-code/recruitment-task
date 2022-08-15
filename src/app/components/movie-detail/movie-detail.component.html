@@ -1,0 +1,15 @@
+<div *ngIf="movie$ | async as movie" class="movie-wrapper">
+  <h1>{{movie.name}}</h1>
+  <img mat-card-sm-image src="/assets/images/movie-covers/{{movie.img}}">
+  <div>
+    Genres:
+    <mat-card-subtitle>
+          <span *ngFor="let genre of movie.genres; let last = last">
+            {{genre}}{{last ? '' : ','}}
+          </span>
+    </mat-card-subtitle>
+  </div>
+  <div>Duration: {{movie.length}}</div>
+  <div>Rate: {{movie.rate}}</div>
+  <div>Description: {{movie.description}}</div>
+</div>

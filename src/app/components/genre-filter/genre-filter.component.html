@@ -1,0 +1,15 @@
+<form
+  [formGroup]="genresForm"
+  class="genre-form"
+  *ngIf="genreOptions$ | async as genreOptions"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>Filter by genre</mat-label>
+    <mat-select formControlName="genre">
+      <mat-option [value]="''">All genres</mat-option>
+      <mat-option *ngFor="let option of genreOptions" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
