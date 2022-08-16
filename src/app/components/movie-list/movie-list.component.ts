@@ -11,6 +11,7 @@ import { Movie } from '../../models/movie.model';
 export class MovieListComponent implements OnInit {
   movies$!: Observable<Movie[]>;
   moviesFiltered$!: Observable<Movie[] | null>
+  errors$!: Observable<string | null>;
 
   constructor(private moviesFacade: MoviesFacade) {
   }
@@ -19,7 +20,8 @@ export class MovieListComponent implements OnInit {
     this.moviesFacade.getMovieList();
     this.movies$ = this.moviesFacade.selectMovies$;
     this.moviesFiltered$ = this.moviesFacade.selectMoviesFilteredBy$.pipe(
-      map(value => value.length === 0 ? null : value)
+      map(value => value.length === 0 ? null : value),
     );
+    this.errors$ = this.moviesFacade.selectError$;
   }
 }

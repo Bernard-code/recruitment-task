@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Movie } from '../models/movie.model';
+import { SearchOptionsFields } from '../models/search-options-fields.enum';
 
 export const getMovieList = createAction(
   '[Movies actions] get movie list'
@@ -28,5 +29,5 @@ export const getMovieByKeyFailure = createAction(
 
 export const searchMovies = createAction(
   '[Movies actions] search movies by filter',
-  props<{ value: string, searchFilter: string }>()
+  props<{ value: string, searchFilter: SearchOptionsFields }>()
 );

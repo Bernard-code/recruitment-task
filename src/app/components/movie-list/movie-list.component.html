@@ -1,6 +1,12 @@
 <div class="search-wrapper">
   <app-movie-search></app-movie-search>
   <app-genre-filter></app-genre-filter>
+  <mat-error
+    class="error-message"
+    *ngIf="errors$ | async as error"
+  >
+    {{error}}
+  </mat-error>
 </div>
 <div
   class="movies-container"
@@ -20,4 +26,3 @@
     ></app-movie-card>
   </div>
 </ng-template>
-

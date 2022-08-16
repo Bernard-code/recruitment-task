@@ -5,30 +5,24 @@ import * as moviesActions from './movies.actions';
 export const initialState: MoviesState = {
   movies: [],
   filteredMovies: [],
+  error: null
 };
 
 export const moviesReducer = createReducer(
   initialState,
   on(moviesActions.getMovieListSuccess, (state, payload) => ({
     ...state,
-    movies: payload.movies
+    movies: payload.movies,
+    error: null
   })),
   on(moviesActions.getMovieByKeySuccess, (state, payload) => ({
     ...state,
-    currentMovie: payload.movie
+    currentMovie: payload.movie,
+    error: null
   })),
-  // In real world app we would have this logic on back-end side.
-  on(moviesActions.searchMovies, (state, payload) => ({
+  on(moviesActions.getMovieListFailure, (state, payload) => ({
     ...state,
-    filteredMovies: state.movies.filter(movie => {
-      switch (payload.searchFilter) {
-        case('description'):
-          return movie.description.toLowerCase().trim().includes(payload.value);
-        case('genres'):
-          return movie.genres.some(genre => genre.toLowerCase().trim().includes(payload.value));
-        default:
-          return movie.name.toLowerCase().trim().includes(payload.value);
-      }
-    })
-  })),
+    error: payload.error,
+    movies: []
+  }))
 );

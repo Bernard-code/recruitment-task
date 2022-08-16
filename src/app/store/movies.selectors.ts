@@ -4,7 +4,8 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 export interface MoviesState {
   movies: Movie[],
   currentMovie?: Movie,
-  filteredMovies: Movie[]
+  filteredMovies: Movie[],
+  error: string | null
 }
 
 export const getMoviesState = createFeatureSelector<MoviesState>('moviesReducer');
@@ -24,4 +25,8 @@ export const selectMoviesFilteredBy = createSelector(
 export const selectGenres = createSelector(
   getMoviesState,
   (state) => new Array(...new Set(state.movies.map(movie => movie.genres).flat()))
+);
+export const selectError = createSelector(
+  getMoviesState,
+  (state) => state.error
 );
